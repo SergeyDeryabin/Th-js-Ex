@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MathBox - 3D Grapher</title>
+  <title>MathBox - 3D-график | MathBox - 3D Grapher</title>
   <script src="mathbox-bundle.js"></script>
   <script src="dat.gui.js"></script>
   
@@ -18,7 +18,7 @@
       plugins: ['core', 'controls', 'cursor', 'mathbox'],
       controls: {klass: THREE.OrbitControls}
     });
-    if (mathbox.fallback) throw "WebGL not supported"
+    if (mathbox.fallback) throw "WebGL не поддерживается | WebGL not supported"
 
     var three = mathbox.three;
     three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
@@ -65,7 +65,7 @@
 		}
 		view.set("range", [[xMin, xMax], [zMin,zMax], [yMin, yMax]]); 
 
-		if (graphColorStyle == "Grayscale")
+		if (graphColorStyle == "Оттенки серого | Grayscale")
 		{
 			// zMax = white, zMin = black
 			graphColors.set("expr", 
@@ -77,7 +77,7 @@
 				}
 			);
 		}
-		else if (graphColorStyle == "Rainbow")
+		else if (graphColorStyle == "Радуга | Rainbow")
 		{
 			// rainbow hue; zMax = red, zMin = violet			
 			graphColors.set("expr", 
@@ -91,7 +91,7 @@
 				}
 			);
 		}
-		else if (graphColorStyle == "Solid Blue")
+		else if (graphColorStyle == "Чисто синий | Solid Blue")
 		{
 			// just a solid blue color			
 			graphColors.set("expr", 
@@ -186,37 +186,37 @@
 	
 	gui.add( this, 'functionText' ).name('y = f(x) = ');
 	
-	var graphColorStyle = "Rainbow";
-	var graphColorStyleList = ["Solid Blue", "Grayscale", "Rainbow"];
-	var graphColorGUI = gui.add( this, "graphColorStyle", graphColorStyleList ).name('Graph style').onChange( updateGraphFunc );
+	var graphColorStyle = "Радуга | Rainbow";
+	var graphColorStyleList = ["Чисто синий | Solid Blue", "Оттенки серого | Grayscale", "Радуга | Rainbow"];
+	var graphColorGUI = gui.add( this, "graphColorStyle", graphColorStyleList ).name('Стиль графика | Graph style').onChange( updateGraphFunc );
 
 
-	var graphWireVisibleGUI = gui.add( this, "graphWireVisible" ).name("View wireframe").onChange(
+	var graphWireVisibleGUI = gui.add( this, "graphWireVisible" ).name("Каркас  - видно| View wireframe").onChange(
 		function()
 		{
 			graphViewWire.set("visible", graphWireVisible);
 		}
 	);
-	var graphShadedGUI = gui.add( this, "graphShaded" ).name("View shading").onChange(
+	var graphShadedGUI = gui.add( this, "graphShaded" ).name("Затенение - видно  | View shading").onChange(
 		function()
 		{
 			graphViewSolid.set("shaded", graphShaded);
 		}
 	);
 	
-	var folder0 = gui.addFolder('Parameters');
+	var folder0 = gui.addFolder('Параметры | Parameters');
 	var aGUI = folder0.add( this, 'a' ).min(0).max(5).step(0.01).name('a = ');
 	var bGUI = folder0.add( this, 'b' ).min(0).max(5).step(0.01).name('b = ');
 	folder0.close();
 	
-	var folder1 = gui.addFolder('Window Range');
+	var folder1 = gui.addFolder('Диапазон окон | Window Range');
 	var xMinGUI = folder1.add( this, 'xMin' );
 	var xMaxGUI = folder1.add( this, 'xMax' );
 	var zMinGUI = folder1.add( this, 'zMin' ).name("yMin");
 	var zMaxGUI = folder1.add( this, 'zMax' ).name("yMax");
 	folder1.close();
 	
-	gui.add( this, 'updateGraph' ).name("Update Graph");
+	gui.add( this, 'updateGraph' ).name("Обновить график | Update Graph");
 	
 	// onChange or onFinishChange
 	aGUI.onChange( updateGraphFunc );
